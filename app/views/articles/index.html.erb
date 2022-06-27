@@ -10,13 +10,15 @@
   </thead>
 
   <tbody>
-  <% @articles.each do |article| %>
+    <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
       <td><%= article.description %></td>
-      <td>Placeholder</td>
+     
+
+      <%# <td> <%= link_to 'Delete', article_path(article), data: { "turbo-method": :delete } </td> %> 
+      <td><%= button_to 'Delete', article_path(article.id) ,method: :delete %></td> 
     </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
-
