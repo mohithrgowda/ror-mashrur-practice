@@ -14,15 +14,19 @@ class ArticlesController < ApplicationController
     @article=Article.new
   end
 
+  def edit
+    @article=Article.find(params[:id])
+  end
+
   def create
     # render plain: params[:article]
 
-    @article=Article.new(params.require(:article).permit(:title,:description))
+    @article=Article.new(params.require(:article).permit(:title, :description))
     if @article.save
       flash[:notice]="Article was successfully created"
       # redirect_to ({action:show})
       redirect_to @article
-      
+
     else 
       # I just ran into this and found the issue and solution. It looks like the turbo library 
       # doesn't like 200 responses from form POST submissions. https://github.com/hotwired/turbo-rails/issues/12#issuecomment-750326081. 
@@ -33,5 +37,18 @@ class ArticlesController < ApplicationController
    
   end
   
+  def update
+    @article=Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice]="Article was successfully updated"
+
+      # redirect_to action: "show", id: params[:id]
+      redirect_to @article
+      
+    else
+      render 'edit'
+    end
+
+  end
 
 end
