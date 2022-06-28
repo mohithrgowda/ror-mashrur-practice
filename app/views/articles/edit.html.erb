@@ -7,9 +7,7 @@
   <li><%= msg %></li>
   <% end %>
 </ul>
-<% end %> 
-
-<%= form_with(model: @article, local:true) do |f| %>
+<% end %> <%= form_with(model: @article, local:true) do |f| %>
 <p>
   <%= f.label :title %> <br />
   <%= f.text_field :title %>
@@ -22,3 +20,5 @@
 
 <p><%= f.submit %></p>
 <% end %>
+
+<p><%= link_to "cancel edit and return to articles", articles_path %></p>
