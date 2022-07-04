@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
     # render plain: params[:article]
 
     @article=Article.new(article_params)
+    @article.user = User.first 
     if @article.save
       flash[:notice]="Article was successfully created"
       # redirect_to ({action:show})
