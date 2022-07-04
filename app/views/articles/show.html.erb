@@ -1,5 +1,6 @@
 <h1>Showing articles details</h1>
 
+<div>By: <%= @article.user.username if @article.user %></div>
 <p><strong>Title:</strong><%= @article.title %></p>
 <p><strong>Description:</strong><%= @article.description %></p>
 
@@ -8,11 +9,9 @@
 </div>
 
 <div style="display: inline-block">
-  <%= button_to 'Delete', article_path(@article) ,method: :delete ,onclick: "return confirm('Are you sure?')" %>
+  <%= button_to 'Delete', article_path(@article) ,method: :delete ,onclick:
+  "return confirm('Are you sure?')" %>
 </div>
-<br>
+<br />
 
-
-<p>
-  <%= link_to "return to articles", articles_path %>
-</p>
+<p><%= link_to "return to articles", articles_path %></p>
